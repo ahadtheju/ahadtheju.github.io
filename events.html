@@ -95,9 +95,6 @@
                  aria-label="The ceremony, step by step. Use the left and right arrow keys.">
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-01-janavasam.jpg">
-                  <img src="images/ritual-01-janavasam.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 1</p>
                   <h3>Welcoming the groom</h3>
@@ -114,9 +111,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-02-kashi-yatra.jpg">
-                  <img src="images/ritual-02-kashi-yatra.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 2</p>
                   <h3>The groom pretends to run away</h3>
@@ -132,9 +126,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-03-garlands.jpg">
-                  <img src="images/ritual-03-garlands.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 3</p>
                   <h3>Exchanging garlands</h3>
@@ -149,9 +140,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-04-oonjal.jpg">
-                  <img src="images/ritual-04-oonjal.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 4</p>
                   <h3>The swing, without a swing</h3>
@@ -176,9 +164,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-05-sankalpam.jpg">
-                  <img src="images/ritual-05-sankalpam.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 5</p>
                   <h3>Asking permission to begin</h3>
@@ -196,9 +181,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-06-kalasam.jpg">
-                  <img src="images/ritual-06-kalasam.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 6</p>
                   <h3>Setting up the pot of water</h3>
@@ -215,9 +197,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-07-agni.jpg">
-                  <img src="images/ritual-07-agni.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 7</p>
                   <h3>Costume change and the lighting of fire</h3>
@@ -233,9 +212,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-08-mangalya-puja.jpg">
-                  <img src="images/ritual-08-mangalya-puja.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 8</p>
                   <h3>Blessing the thali</h3>
@@ -253,9 +229,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-09-thali.jpg">
-                  <img src="images/ritual-09-thali.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 9</p>
                   <h3>Tying the thali</h3>
@@ -277,9 +250,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-10-saptapadi.jpg">
-                  <img src="images/ritual-10-saptapadi.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 10</p>
                   <h3>Seven steps, and the toe rings</h3>
@@ -290,15 +260,12 @@
                      family, health through every season, and friendship for life.</p>
                   <p>Straight after, the bride puts her right foot on a grinding stone
                      (ammi) by the fire and the groom slides silver toe rings (metti) onto
-                     the second toe of each foot. The stone signifies that the couple be firm like this stone in hard times. 
+                     the second toe of each foot. The stone signifies that the couple be firm like this stone in hard times.
                     The toe rings, like the thali is worn by women who are married.</p>
                 </div>
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-11-laja-homam.jpg">
-                  <img src="images/ritual-11-laja-homam.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 11</p>
                   <h3>The brother's handful of rice</h3>
@@ -313,9 +280,6 @@
               </article>
 
               <article class="ritual__slide">
-                <div class="ph ph--wide" data-file="images/ritual-12-akshadhai.jpg">
-                  <img src="images/ritual-12-akshadhai.jpg" alt="" loading="lazy">
-                </div>
                 <div class="ritual__body">
                   <p class="ritual__step">Step 12</p>
                   <h3>The last blessing</h3>
@@ -407,8 +371,13 @@
 </div>
 
 <script>
-/* Ceremony walkthrough: arrows, dots, keyboard, and native swipe on touch. */
+/* Ceremony walkthrough: arrows, dots, keyboard, and native swipe on touch.
+   The slides are text only and so vary in height. The strip is sized to the
+   slide you are on, and re-measured whenever that slide changes size (a
+   glossary word opening, a window resize, the page being unlocked). */
 (function () {
+  var refit = function () {};
+
   function start() {
     var track = document.getElementById('ritual-track');
     if (!track) { return; }
@@ -418,6 +387,7 @@
     var count = document.getElementById('ritual-count');
     var dots = document.getElementById('ritual-dots');
     var n = slides.length;
+    if (!n || !prev || !next || !count || !dots) { return; }
     var at = 0;
 
     for (var k = 0; k < n; k++) {
@@ -430,6 +400,24 @@
       })(k);
     }
 
+    /* match the strip to the current slide; leave it alone if there is no
+       layout yet, so the CSS fallback (tallest slide) stays in charge */
+    function fit() {
+      var h = slides[at].offsetHeight;
+      if (h > 0) { track.style.height = h + 'px'; }
+    }
+    refit = fit;
+
+    var watcher = null;
+    if (window.ResizeObserver) {
+      watcher = new ResizeObserver(function () { fit(); });
+    }
+    function watch() {
+      if (!watcher) { return; }
+      watcher.disconnect();
+      watcher.observe(slides[at]);
+    }
+
     function paint() {
       count.textContent = (at + 1) + ' of ' + n;
       prev.disabled = at === 0;
@@ -437,12 +425,18 @@
       for (var k = 0; k < n; k++) {
         dots.children[k].setAttribute('aria-current', k === at ? 'true' : 'false');
       }
+      watch();
+      fit();
     }
 
+    /* Set the height first so the strip is not still resizing while it
+       scrolls sideways, which cancels the scroll in some browsers. */
+    var lock = 0;
     function go(k) {
       at = Math.max(0, Math.min(n - 1, k));
-      track.scrollTo({ left: slides[at].offsetLeft - slides[0].offsetLeft, behavior: 'smooth' });
       paint();
+      lock = Date.now() + 600;
+      track.scrollTo({ left: slides[at].offsetLeft - slides[0].offsetLeft, behavior: 'smooth' });
     }
 
     prev.addEventListener('click', function () { go(at - 1); });
@@ -452,6 +446,7 @@
     track.addEventListener('scroll', function () {
       clearTimeout(settle);
       settle = setTimeout(function () {
+        if (Date.now() < lock) { return; }
         var best = 0, gap = Infinity;
         for (var k = 0; k < n; k++) {
           var d = Math.abs(slides[k].offsetLeft - slides[0].offsetLeft - track.scrollLeft);
@@ -467,6 +462,12 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); go(at - 1); }
     });
 
+    var resized;
+    window.addEventListener('resize', function () {
+      clearTimeout(resized);
+      resized = setTimeout(fit, 120);
+    });
+
     paint();
   }
 
@@ -478,6 +479,7 @@
     if (!def || def.className.indexOf('gloss__def') === -1) { return; }
     var open = def.classList.toggle('is-open');
     b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    refit();
   });
 
   if (document.readyState === 'loading') {
