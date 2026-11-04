@@ -366,7 +366,25 @@ p:last-child { margin-bottom: 0; }
   html.locked .site { display: block !important; }
   .panel, .card { box-shadow: none; }
 }
-
+/* ---------- 15. Ashutosh's Chennai list ---------- */
+.guide { columns: 3 262px; column-gap: 22px; margin-top: 4px; }
+.guide__group {
+  break-inside: avoid; -webkit-column-break-inside: avoid; page-break-inside: avoid;
+  background: var(--card); border: var(--frame); box-shadow: var(--shadow);
+  padding: 20px 22px 22px; margin: 0 0 22px;
+}
+.guide__group h3 { margin-bottom: .1rem; }
+.guide__group ul { list-style: none; margin: 12px 0 0; padding: 0; }
+.guide__group li { padding: 9px 0; font-size: .95rem; }
+.guide__group li + li { border-top: 1px dashed var(--gold-faint); }
+.guide__group li b { font-weight: 600; }
+.guide__where {
+  display: inline-block; margin-right: 7px;
+  font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--navy);
+}
+.guide__note { display: block; margin-top: 1px; color: var(--ink-soft); font-size: .9rem; }
+@media (max-width: 700px) { .guide { columns: 1; } }
 /* ---------- 16. Ceremony walkthrough (inside the day panel) ---------- */
 .ceremony {
   border-top: 1px dashed var(--gold-faint);
